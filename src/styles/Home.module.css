@@ -1,0 +1,42 @@
+/* src/styles/Home.module.css */
+.container {
+    width: 100%;
+  }
+  
+  .hero {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .description {
+    font-size: 1.2rem;
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .sectionTitle {
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+  }
+  
+  .featured {
+    margin-bottom: 4rem;
+  }
+  
+  .recent {
+    margin-bottom: 3rem;
+  }
+  
+  .articlesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  

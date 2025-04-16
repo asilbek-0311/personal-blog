@@ -1,0 +1,70 @@
+/* src/styles/globals.css */
+:root {
+    /* Colors inspired by ithaca.xyz */
+    --color-background: #ffffff;
+    --color-text: #262626;
+    --color-text-secondary: #555555;
+    --color-accent: #0070f3;
+    --color-border: #eaeaea;
+    --color-card-background: #f9f9f9;
+    
+    /* Font variables defined in layout.tsx */
+    --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-serif: var(--font-playfair), Georgia, Cambria, "Times New Roman", Times, serif;
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-text);
+    background-color: var(--color-background);
+    line-height: 1.6;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+  
+  p {
+    margin-bottom: 1rem;
+  }
+  
+  a {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+  
+  .layout-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  main {
+    padding: 2rem 0;
+  }
+  
+  article {
+    margin-bottom: 3rem;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
