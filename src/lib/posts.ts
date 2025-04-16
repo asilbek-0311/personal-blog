@@ -4,6 +4,12 @@ import path from 'path';
 import matter from 'gray-matter';
 
 const postsDirectory = path.join(process.cwd(), 'content/posts');
+console.log(`Current directory: ${process.cwd()}`);
+console.log(`Posts directory: ${postsDirectory}`);
+// Ensure the posts directory exists
+if (!fs.existsSync(postsDirectory)) {
+  console.error(`Posts directory does not exist: ${postsDirectory}`);
+}
 
 export interface Post {
   slug: string;
