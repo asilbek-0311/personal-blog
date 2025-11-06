@@ -10,7 +10,7 @@ export default function AboutPage() {
       
       <div className={styles.content}>
         <p>
-          Welcome to my blog! I'm passionate about technology, design, and creating 
+          Welcome to my blog! I am passionate about technology, design, and creating 
           valuable content to share with the world.
         </p>
         

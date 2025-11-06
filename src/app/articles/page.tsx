@@ -5,7 +5,7 @@ import styles from '../../styles/Articles.module.css';
 
 export default async function ArticlesPage() {
   const posts = await getPosts();
-  console.log(posts);
+  // console.log(posts);
   
   return (
     <div className={styles.container}>

@@ -75,7 +75,7 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
       coverImage: data.coverImage || '',
       content,
     };
-  } catch (error) {
+  } catch {
     return null;
   }
 }
