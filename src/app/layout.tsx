@@ -18,8 +18,9 @@ const playfair = Playfair_Display({
 });
 
 export const metadata = {
-  title: 'My Blog',
-  description: 'A simple blog built with Next.js',
+  title: 'Asilbeks Blog',
+  description: 'Amazing personal website of Asilbek, a software developer and tech enthusiast.',
+  
 };
 
 export default function RootLayout({
