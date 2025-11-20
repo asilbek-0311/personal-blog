@@ -12,7 +12,7 @@ export default function AboutPage() {
         <p>
           Hi, I am Asilbek! I am a [your role/profession - e.g., software developer, 
           designer, student] based in [your location]. I created this space to share 
-          my thoughts, projects, and things I'm learning along the way.
+          my thoughts, projects, and things I am learning along the way.
         </p>
         
         <h3>What I Do</h3>
