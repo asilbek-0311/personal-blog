@@ -5,10 +5,27 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.content}>
-        <p>© {new Date().getFullYear()} My Blog. All rights reserved.</p>
-        <p className={styles.poweredBy}>
-          Built with Next.js
-        </p>
+        <p>© {new Date().getFullYear()} Asilbek's Blog.</p>
+        <div className={styles.socialLinks}>
+          <a 
+            href="https://github.com/asilbek-0311" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+          >
+            GitHub
+          </a>
+          <span className={styles.separator}>•</span>
+          <a 
+            href="https://linkedin.com/in/asilbek0311" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            LinkedIn
+          </a>
+        </div>
+
       </div>
     </footer>
   );

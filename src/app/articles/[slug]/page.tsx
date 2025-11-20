@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import styles from '../../../styles/ArticlePage.module.css';
 import { Metadata } from 'next';
+import { CustomMDX } from '@/components/mdx';
 
 // Generate static params for all posts
 export async function generateStaticParams() {
@@ -71,10 +72,10 @@ export default async function ArticlePage({
         </div>
       )}
       
-      <div 
-        className={styles.content}
-        dangerouslySetInnerHTML={{ __html: post.content }}
-      />
+      <div className={styles.content}>
+        <CustomMDX source={post.content} />
+      </div>
+      
     </article>
   );
 }
