@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.content}>
-        <p>© {new Date().getFullYear()} Asilbek's Blog.</p>
+        <p>© {new Date().getFullYear()} Asilbek&apos;s Blog.</p>
         <div className={styles.socialLinks}>
           <a 
             href="https://github.com/asilbek-0311" 
