@@ -26,7 +26,7 @@ export default function ThoughtInput() {
         setMessage('Thought sent! 💭');
         setTimeout(() => setMessage(''), 3000);
       }
-    } catch (error) {
+    } catch {
       setMessage('Failed to send thought');
     } finally {
       setIsSubmitting(false);

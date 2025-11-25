@@ -22,7 +22,7 @@ export async function GET() {
     const data = fs.readFileSync(thoughtsFilePath, 'utf-8');
     const thoughts = JSON.parse(data);
     return NextResponse.json(thoughts);
-  } catch (error) {
+  } catch {
     return NextResponse.json([]);
   }
 }
@@ -50,7 +50,7 @@ export async function POST(request: Request) {
     fs.writeFileSync(thoughtsFilePath, JSON.stringify(thoughts, null, 2));
 
     return NextResponse.json(newThought);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to save thought' }, { status: 500 });
   }
 }

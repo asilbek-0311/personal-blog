@@ -15,7 +15,7 @@ export default function AboutPage() {
 
       <h3>How I Started</h3>
       <p>
-        I didn&apos;t start coding because of some dramatic movie moment — no glowing screens, no “hack the NASA mainframe." I was simply curious about how things work. That curiosity turned into late-night coding sessions, many broken projects, and eventually… working systems I'm proud of. I&apos;ve been building and learning ever since.
+        I didn&apos;t start coding because of some dramatic movie moment — no glowing screens, no &ldquo;hack the NASA mainframe.&rdquo; I was simply curious about how things work. That curiosity turned into late-night coding sessions, many broken projects, and eventually… working systems I&apos;m proud of. I&apos;ve been building and learning ever since.
       </p>
 
       <h3>What I Work On</h3>

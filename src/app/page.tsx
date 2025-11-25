@@ -4,8 +4,6 @@ import FeaturedArticle from '../components/FeaturedArticle';
 import ArticleCard from '../components/ArticleCard';
 import styles from '../styles/Home.module.css';
 import Terminal from '@/components/Terminal';
-import ThoughtInput from '@/components/ThoughtInput';
-import Link from 'next/link';
 
 
 export default async function HomePage() {

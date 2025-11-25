@@ -5,6 +5,12 @@ import { GoogleGenAI } from '@google/genai';
 // Initialize the new client
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
+type MessagePart = {
+    role: 'user' | 'model';
+    parts: Array<{ text: string }>;
+  };
+  
+
 const SYSTEM_INSTRUCTION = `You are an AI assistant on Asilbek's personal website terminal. You help visitors learn about Asilbek in a conversational and helpful way.
 
 About Asilbek:
@@ -23,7 +29,7 @@ Guidelines:
 
 // ⚠️ Note: In production (Vercel/Netlify), this Map will be wiped on every redeploy/cold start.
 // Use Redis (e.g., Vercel KV or Upstash) for persistent chat history.
-const conversations = new Map<string, any[]>();
+const conversations = new Map<string, MessagePart[]>();
 
 export async function POST(request: Request) {
   try {
@@ -81,7 +87,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ response: responseText });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Gemini API Error:', error);
     
     // Handle specific error codes if needed (error structure varies by SDK version)
@@ -102,7 +108,7 @@ export async function DELETE(request: Request) {
       conversations.clear();
     }
     return NextResponse.json({ success: true, message: 'Session cleared' });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to clear conversation' }, { status: 500 });
   }
 }
