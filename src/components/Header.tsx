@@ -21,6 +21,9 @@ export default function Header() {
           <li className={styles.navItem}>
             <Link href="/articles" className={styles.navLink}>Articles</Link>
           </li>
+          {/* <li className={styles.navItem}>
+            <Link href="/thoughts" className={styles.navLink}>Thoughts</Link>
+          </li> */}
           <li className={styles.navItem}>
             <Link href="/projects" className={styles.navLink}>Projects</Link>
           </li>

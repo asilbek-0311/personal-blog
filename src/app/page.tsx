@@ -3,6 +3,10 @@ import { getPosts } from '../lib/posts';
 import FeaturedArticle from '../components/FeaturedArticle';
 import ArticleCard from '../components/ArticleCard';
 import styles from '../styles/Home.module.css';
+import Terminal from '@/components/Terminal';
+import ThoughtInput from '@/components/ThoughtInput';
+import Link from 'next/link';
+
 
 export default async function HomePage() {
   const posts = await getPosts();
@@ -17,6 +21,9 @@ export default async function HomePage() {
           Thoughts, ideas, and projects about technology and more.
         </p>
       </section>
+
+      <Terminal />
+
       
       <section className={styles.featured}>
         <h2 className={styles.sectionTitle}>Featured Article</h2>

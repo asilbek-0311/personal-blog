@@ -1,0 +1,156 @@
+/* src/styles/Terminal.module.css */
+.terminal {
+    background: #0a0e14;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    max-width: 800px;
+    margin: 2rem auto;
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Droid Sans Mono', 'Source Code Pro', monospace;
+    cursor: text;
+  }
+  
+  .header {
+    background: #1a1f29;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid #0d1117;
+  }
+  
+  .buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .close, .minimize, .maximize {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: filter 0.2s;
+  }
+  
+  .close { background: #ff5f56; }
+  .minimize { background: #ffbd2e; }
+  .maximize { background: #27c93f; }
+  
+  .close:hover { filter: brightness(1.2); }
+  .minimize:hover { filter: brightness(1.2); }
+  .maximize:hover { filter: brightness(1.2); }
+  
+  .title {
+    color: #8b949e;
+    font-size: 0.85rem;
+    flex: 1;
+    text-align: center;
+    font-weight: 500;
+  }
+  
+  .body {
+    padding: 1.5rem;
+    min-height: 400px;
+    max-height: 600px;
+    overflow-y: auto;
+    color: #c9d1d9;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  
+  .body::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .body::-webkit-scrollbar-track {
+    background: #0a0e14;
+  }
+  
+  .body::-webkit-scrollbar-thumb {
+    background: #30363d;
+    border-radius: 4px;
+  }
+  
+  .body::-webkit-scrollbar-thumb:hover {
+    background: #484f58;
+  }
+  
+  .line {
+    margin-bottom: 0.5rem;
+  }
+  
+  .commandLine {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #c9d1d9;
+  }
+  
+  .commandText {
+    color: #e6edf3;
+  }
+  
+  .prompt {
+    color: #58a6ff;
+    font-weight: 600;
+    user-select: none;
+    min-width: 20px;
+  }
+  
+  .output {
+    color: #7ee787;
+    padding-left: 1.75rem;
+    white-space: pre-wrap;
+    margin-top: 0.25rem;
+  }
+  
+  .error {
+    color: #ff7b72;
+    padding-left: 1.75rem;
+    white-space: pre-wrap;
+    margin-top: 0.25rem;
+  }
+  
+  .system {
+    color: #a5d6ff;
+    white-space: pre-wrap;
+    margin-top: 0.25rem;
+  }
+  
+  .inputLine {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  
+  .input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #e6edf3;
+    font-family: inherit;
+    font-size: 0.95rem;
+    caret-color: #58a6ff;
+  }
+  
+  .input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .input::selection {
+    background: #1f6feb;
+  }
+  
+  .cursor {
+    color: #58a6ff;
+    animation: blink 1s infinite;
+    font-weight: bold;
+  }
+  
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }

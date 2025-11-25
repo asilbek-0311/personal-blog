@@ -1,0 +1,58 @@
+/* src/styles/ThoughtInput.module.css */
+.container {
+    max-width: 600px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+  }
+  
+  .form {
+    display: flex;
+    gap: 0.75rem;
+  }
+  
+  .input {
+    flex: 1;
+    padding: 0.875rem 1.25rem;
+    font-size: 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  
+  .input:focus {
+    border-color: #667eea;
+  }
+  
+  .input:disabled {
+    background: #f3f4f6;
+    cursor: not-allowed;
+  }
+  
+  .button {
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .button:hover:not(:disabled) {
+    background: #5568d3;
+  }
+  
+  .button:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+  }
+  
+  .message {
+    text-align: center;
+    margin-top: 1rem;
+    color: #667eea;
+    font-weight: 500;
+  }
