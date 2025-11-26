@@ -1,15 +1,15 @@
 // src/app/page.tsx
-import { getPosts } from '../lib/posts';
-import FeaturedArticle from '../components/FeaturedArticle';
-import ArticleCard from '../components/ArticleCard';
+// import { getPosts } from '../lib/posts';
+// import FeaturedArticle from '../components/FeaturedArticle';
+// import ArticleCard from '../components/ArticleCard';
 import styles from '../styles/Home.module.css';
 import Terminal from '@/components/Terminal';
 
 
 export default async function HomePage() {
-  const posts = await getPosts();
-  const featuredPost = posts[0]; // Most recent post as featured
-  const recentPosts = posts.slice(1, 4); // Next 3 most recent posts
+  // const posts = await getPosts();
+  // const featuredPost = posts[0]; // Most recent post as featured
+  // const recentPosts = posts.slice(1, 4); // Next 3 most recent posts
   
   return (
     <div className={styles.container}>
