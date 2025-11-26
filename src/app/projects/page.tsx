@@ -46,7 +46,7 @@ export default function ProjectsPage() {
           A collection of my work in blockchain, web development, and beyond.
         </p>
         <p className={styles.lazyNote}>
-          <em>I'm a lazy programmer - this is just a taste. For the full collection of projects, repos, and code, check out my{' '}
+          <em>I&apos;m a lazy programmer - this is just a taste. For the full collection of projects, repos, and code, check out my{' '}
           <a href="https://github.com/asilbek-0311" target="_blank" rel="noopener noreferrer" className={styles.githubLink}>
             GitHub
           </a>
