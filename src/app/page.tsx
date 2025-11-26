@@ -23,7 +23,7 @@ export default async function HomePage() {
       <Terminal />
 
       
-      <section className={styles.featured}>
+      {/* <section className={styles.featured}>
         <h2 className={styles.sectionTitle}>Featured Article</h2>
         {featuredPost && <FeaturedArticle post={featuredPost} />}
       </section>
@@ -35,7 +35,7 @@ export default async function HomePage() {
             <ArticleCard key={post.slug} post={post} />
           ))}
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

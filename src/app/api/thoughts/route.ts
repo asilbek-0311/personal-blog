@@ -1,56 +1,73 @@
 // src/app/api/thoughts/route.ts
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
+import { getRedisClient } from '@/lib/redis';
 
-const thoughtsFilePath = path.join(process.cwd(), 'data', 'thoughts.json');
+const THOUGHTS_KEY = 'thoughts';
 
-// Ensure data directory exists
-function ensureDataDir() {
-  const dataDir = path.join(process.cwd(), 'data');
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
-  }
-  if (!fs.existsSync(thoughtsFilePath)) {
-    fs.writeFileSync(thoughtsFilePath, JSON.stringify([]));
-  }
-}
+type Thought = {
+  id: number;
+  text: string;
+  timestamp: string;
+};
 
 export async function GET() {
   try {
-    ensureDataDir();
-    const data = fs.readFileSync(thoughtsFilePath, 'utf-8');
-    const thoughts = JSON.parse(data);
+    const redis = getRedisClient();
+    
+    // Get thoughts from Redis
+    const data = await redis.get(THOUGHTS_KEY);
+    
+    if (!data) {
+      // If no thoughts exist yet, return empty array
+      return NextResponse.json([]);
+    }
+    
+    const thoughts: Thought[] = JSON.parse(data);
     return NextResponse.json(thoughts);
-  } catch {
+    
+  } catch (err) {
+    console.error('Error fetching thoughts:', err);
     return NextResponse.json([]);
   }
 }
 
 export async function POST(request: Request) {
   try {
-    ensureDataDir();
-    const body = await request.json();
+    const redis = getRedisClient();
+    const body = await request.json() as { thought: string };
     const { thought } = body;
 
     if (!thought || thought.trim().length === 0) {
-      return NextResponse.json({ error: 'Thought cannot be empty' }, { status: 400 });
+      return NextResponse.json(
+        { error: 'Thought cannot be empty' }, 
+        { status: 400 }
+      );
     }
 
-    const data = fs.readFileSync(thoughtsFilePath, 'utf-8');
-    const thoughts = JSON.parse(data);
+    // Get existing thoughts
+    const data = await redis.get(THOUGHTS_KEY);
+    const thoughts: Thought[] = data ? JSON.parse(data) : [];
 
-    const newThought = {
+    // Create new thought
+    const newThought: Thought = {
       id: Date.now(),
       text: thought.trim(),
       timestamp: new Date().toISOString(),
     };
 
+    // Add to array
     thoughts.push(newThought);
-    fs.writeFileSync(thoughtsFilePath, JSON.stringify(thoughts, null, 2));
+
+    // Save back to Redis
+    await redis.set(THOUGHTS_KEY, JSON.stringify(thoughts));
 
     return NextResponse.json(newThought);
-  } catch {
-    return NextResponse.json({ error: 'Failed to save thought' }, { status: 500 });
+    
+  } catch (err) {
+    console.error('Error saving thought:', err);
+    return NextResponse.json(
+      { error: 'Failed to save thought' }, 
+      { status: 500 }
+    );
   }
 }
