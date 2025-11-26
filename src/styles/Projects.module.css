@@ -1,66 +1,204 @@
 /* src/styles/Projects.module.css */
+
 .container {
-    width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0rem 1rem;
+  min-height: 100vh;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; */
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 1.25rem;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto 1.5rem;
+}
+
+.lazyNote {
+  font-size: 1rem;
+  color: #888;
+  max-width: 700px;
+  margin: 1.5rem auto 0;
+  line-height: 1.6;
+}
+
+.githubLink {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.githubLink:hover {
+  color: #764ba2;
+  border-bottom: 2px solid #764ba2;
+}
+
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.projectCard {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.projectCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(102, 126, 234, 0.15);
+  border-color: #667eea;
+}
+
+.projectHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.projectTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+  flex: 1;
+}
+
+.status {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.status.completed {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.status.live {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.status.indevelopment {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.projectDescription {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.techTag {
+  background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+  color: #667eea;
+  padding: 0.4rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid #667eea30;
+}
+
+.projectLink {
+  display: inline-flex;
+  align-items: center;
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  margin-top: auto;
+}
+
+.projectLink:hover {
+  color: #764ba2;
+  transform: translateX(4px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 2rem 1rem;
   }
-  
-  .header {
-    margin-bottom: 3rem;
-    text-align: center;
-  }
-  
+
   .title {
     font-size: 2.5rem;
-    margin-bottom: 1rem;
   }
-  
+
   .description {
-    font-size: 1.2rem;
-    color: var(--color-text-secondary);
-    max-width: 600px;
-    margin: 0 auto;
+    font-size: 1.1rem;
   }
-  
+
+  .lazyNote {
+    font-size: 0.95rem;
+  }
+
   .projectsGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
-  
+
+  .projectHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .status {
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2rem;
+  }
+
   .projectCard {
-    padding: 2rem;
-    border-radius: 8px;
-    background-color: var(--color-card-background);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 1.5rem;
   }
-  
-  .projectCard:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-  }
-  
+
   .projectTitle {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    font-family: var(--font-serif);
+    font-size: 1.25rem;
   }
-  
-  .projectDescription {
-    color: var(--color-text-secondary);
-    margin-bottom: 1.5rem;
-  }
-  
-  .technologies {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-  
-  .techTag {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    background-color: rgba(0, 112, 243, 0.1);
-    color: var(--color-accent);
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 500;
-  }
+}

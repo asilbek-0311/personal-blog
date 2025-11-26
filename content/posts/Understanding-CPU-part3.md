@@ -1,4 +1,3 @@
-
 ---
 title: "Understanding how CPU works (part 3)"
 date: "2025-04-27"
