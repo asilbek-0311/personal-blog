@@ -14,7 +14,7 @@ export default async function HomePage() {
   return (
     <div className={styles.container}>
       <section className={styles.hero}>
-        <h1 className={styles.title}>Welcome to My Blog</h1>
+        <h1 className={styles.title}>Welcome to My Website</h1>
         <p className={styles.description}>
           Thoughts, ideas, and projects about technology and more.
         </p>
