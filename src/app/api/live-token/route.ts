@@ -6,7 +6,7 @@ import { createRateLimiter } from '@/lib/agent/rate-limit';
 import { getPosts } from '@/lib/posts';
 import { upstreamStatus } from '../chat/upstream';
 
-export const LIVE_MODEL = process.env.GEMINI_LIVE_MODEL ?? 'gemini-3.8-live';
+const LIVE_MODEL = process.env.GEMINI_LIVE_MODEL ?? 'gemini-3.8-live';
 // Prebuilt Gemini voice. Male-sounding options include Charon, Orus, Puck and Fenrir.
 const LIVE_VOICE = process.env.GEMINI_LIVE_VOICE ?? 'Charon';
 
