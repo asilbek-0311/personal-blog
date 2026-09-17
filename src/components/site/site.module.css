@@ -1,0 +1,125 @@
+.header {
+  border-bottom: var(--border-strong);
+}
+
+.bar,
+.footer {
+  width: 100%;
+  max-width: calc(var(--width-page) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.bar {
+  min-height: 4rem;
+}
+
+.brand {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  text-decoration: none;
+}
+
+.brand:hover {
+  color: var(--color-accent);
+}
+
+.navWrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.nav,
+.footerLinks {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav {
+  gap: var(--space-6);
+}
+
+.navLink {
+  position: relative;
+  display: block;
+  padding-block: var(--space-2);
+  font-size: var(--text-sm);
+  text-decoration: none;
+  color: var(--color-muted);
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 2px;
+  height: 1px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-normal) var(--ease-out-expo);
+}
+
+.navLink:hover {
+  color: var(--color-text);
+}
+
+.navLink:hover::after,
+.navLink[aria-current='page']::after {
+  transform: scaleX(1);
+}
+
+.navLink[aria-current='page'] {
+  color: var(--color-accent);
+}
+
+.themeToggle {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  color: var(--color-text);
+  background: transparent;
+  border: var(--border-strong);
+  cursor: pointer;
+  transition: color var(--duration-fast), background var(--duration-fast), border-color var(--duration-fast);
+}
+
+.themeToggle:hover {
+  color: var(--color-on-accent);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.footer {
+  padding-block: var(--space-6);
+  border-top: var(--border-soft);
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.footerLinks {
+  gap: var(--space-4);
+}
+
+.footerLinks a {
+  text-decoration: none;
+}
+
+@media (max-width: 30rem) {
+  .navWrap,
+  .nav {
+    gap: var(--space-3);
+  }
+
+  .brand {
+    font-size: var(--text-lg);
+  }
+}

@@ -1,85 +1,43 @@
-// src/app/projects/page.tsx
-// src/app/projects/page.tsx
-import styles from '../../styles/Projects.module.css';
+import type { Metadata } from 'next';
+import { GITHUB_URL, projects } from '@/content/projects';
+import styles from './projects.module.css';
+
+export const metadata: Metadata = {
+  title: 'Projects',
+  description: 'Things Asilbek has built: communities, smart contracts and web apps.',
+};
 
 export default function ProjectsPage() {
-  const projects = [
-    {
-      id: 1,
-      title: 'Decentralized Voting System',
-      description: 'My final year project - a blockchain-based voting system ensuring transparency and security in electoral processes.',
-      technologies: ['Blockchain', 'Smart Contracts', 'Web3', 'React'],
-      link: 'https://fyp-voting-system.vercel.app/',
-      status: 'Completed'
-    },
-    {
-      id: 2,
-      title: 'Next.js Dashboard',
-      description: 'Full-featured invoice management application with authentication, CRUD operations, and modern UI.',
-      technologies: ['Next.js', 'TypeScript', 'PostgreSQL', 'Tailwind'],
-      link: 'https://nextjs-dashboard-five-mu-64.vercel.app/dashboard',
-      status: 'Live'
-    },
-    {
-      id: 3,
-      title: 'DevPev Community',
-      description: 'A developer community platform built for connecting and collaborating with fellow developers.',
-      technologies: ['Next.js', 'React', 'TypeScript'],
-      link: 'https://www.devpev.uz/',
-      status: 'In Development'
-    },
-    {
-      id: 4,
-      title: 'NFT Speedrun Challenge',
-      description: 'Built as part of SpeedRunEthereum challenges - an NFT minting and marketplace application.',
-      technologies: ['Solidity', 'Ethereum', 'React', 'Web3.js'],
-      link: 'https://nft-speedrun-eth-ch0.vercel.app/',
-      status: 'Completed'
-    },
-  ];
-
   return (
-    <div className={styles.container}>
-      <header className={styles.header}>
-        <h1 className={styles.title}>Projects</h1>
-        <p className={styles.description}>
-          A collection of my work in blockchain, web development, and beyond.
-        </p>
-        <p className={styles.lazyNote}>
-          <em>I&apos;m a lazy programmer - this is just a taste. For the full collection of projects, repos, and code, check out my{' '}
-          <a href="https://github.com/asilbek-0311" target="_blank" rel="noopener noreferrer" className={styles.githubLink}>
+    <>
+      <header className="page-header">
+        <h1 className="page-title">Projects</h1>
+        <p className="page-lede">
+          A small selection. The rest lives on{' '}
+          <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
             GitHub
           </a>
-          .</em>
+          .
         </p>
       </header>
-      
-      <div className={styles.projectsGrid}>
-        {projects.map(project => (
-          <div key={project.id} className={styles.projectCard}>
-            <div className={styles.projectHeader}>
-              <h3 className={styles.projectTitle}>{project.title}</h3>
-              <span className={`${styles.status} ${styles[project.status.toLowerCase().replace(' ', '')]}`}>
+
+      <ol className={styles.list}>
+        {projects.map((project) => (
+          <li key={project.title} className={styles.item}>
+            <div className={styles.heading}>
+              <h2 className={styles.title}>{project.title}</h2>
+              <span className={styles.status} data-status={project.status}>
                 {project.status}
               </span>
             </div>
-            <p className={styles.projectDescription}>{project.description}</p>
-            <div className={styles.technologies}>
-              {project.technologies.map(tech => (
-                <span key={tech} className={styles.techTag}>{tech}</span>
-              ))}
-            </div>
-            <a 
-              href={project.link} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className={styles.projectLink}
-            >
-              View Project →
+            <p className={styles.description}>{project.description}</p>
+            <p className="meta">{project.technologies.join(' · ')}</p>
+            <a href={project.link} target="_blank" rel="noopener noreferrer" className={`btn btn-outline ${styles.visit}`}>
+              Visit<span className="visually-hidden"> {project.title}</span> <span aria-hidden="true">↗</span>
             </a>
-          </div>
+          </li>
         ))}
-      </div>
-    </div>
+      </ol>
+    </>
   );
 }

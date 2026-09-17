@@ -1,0 +1,194 @@
+.resume {
+  max-width: 44rem;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-4);
+}
+
+.headline {
+  margin: var(--space-1) 0 0;
+  font-size: var(--text-lg);
+}
+
+.contact {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.summary {
+  margin: 0;
+  max-width: var(--width-prose);
+  font-size: var(--text-lg);
+  line-height: 1.7;
+}
+
+.section {
+  margin-top: var(--space-12);
+}
+
+.sectionTitle {
+  margin: 0 0 var(--space-6);
+  padding-bottom: var(--space-2);
+  font-size: var(--text-2xl);
+  border-bottom: var(--border-strong);
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  gap: var(--space-6);
+  align-items: baseline;
+}
+
+.role {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: 600;
+}
+
+.org {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.points {
+  margin: var(--space-2) 0 0;
+  padding-left: 1.1em;
+}
+
+.points li + li {
+  margin-top: var(--space-1);
+}
+
+.points li::marker {
+  color: var(--color-muted);
+}
+
+.skills {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.skills dd {
+  margin: 0;
+}
+
+@media (max-width: 36rem) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .entry {
+    grid-template-columns: 1fr;
+    gap: var(--space-1);
+  }
+}
+
+/* ---- PDF: compact, one font, fits A4 ---- */
+@media print {
+  .resume {
+    max-width: none;
+    font-family: var(--font-sans);
+    font-size: 9.5pt;
+    line-height: 1.4;
+  }
+
+  .resume :global(.page-header) {
+    margin: 0 0 8pt;
+    padding-bottom: 6pt;
+  }
+
+  .resume :global(.page-title) {
+    font-family: var(--font-sans);
+    font-size: 20pt;
+    font-weight: 600;
+  }
+
+  .resume :global(.meta) {
+    font-size: 8.5pt;
+  }
+
+  .headline {
+    margin-top: 1pt;
+    font-size: 11pt;
+  }
+
+  .contact {
+    margin-top: 2pt;
+    font-size: 8.5pt;
+  }
+
+  .summary {
+    max-width: none;
+    font-size: 9.5pt;
+    line-height: 1.45;
+  }
+
+  .section {
+    margin-top: 10pt;
+  }
+
+  .sectionTitle {
+    margin-bottom: 5pt;
+    padding-bottom: 2pt;
+    font-family: var(--font-sans);
+    font-size: 10.5pt;
+    font-weight: 600;
+    break-after: avoid;
+  }
+
+  .timeline {
+    gap: 7pt;
+  }
+
+  .entry {
+    grid-template-columns: 30mm 1fr;
+    gap: 6pt;
+    break-inside: avoid;
+  }
+
+  .entry > :first-child {
+    white-space: nowrap;
+  }
+
+  .role {
+    font-size: 10pt;
+  }
+
+  .org {
+    font-size: 9pt;
+  }
+
+  .points {
+    margin-top: 2pt;
+    padding-left: 10pt;
+    list-style: disc;
+  }
+
+  .points li + li {
+    margin-top: 1pt;
+  }
+
+  .skills {
+    gap: 2pt;
+  }
+}

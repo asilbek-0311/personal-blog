@@ -1,70 +1,197 @@
-/* src/styles/globals.css */
-:root {
-    /* Colors inspired by ithaca.xyz */
-    --color-background: #fdfdfd;
-    --color-text: #262626;
-    --color-text-secondary: #555555;
-    --color-accent: #0070f3;
-    --color-border: #eaeaea;
-    --color-card-background: #f9f9f9;
-    
-    /* Font variables defined in layout.tsx */
-    --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    --font-serif: var(--font-playfair), Georgia, Cambria, "Times New Roman", Times, serif;
+@import './tokens.css';
+@import './prose.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color var(--duration-normal), color var(--duration-normal);
+}
+
+main {
+  flex: 1;
+  width: 100%;
+  max-width: calc(var(--width-page) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: var(--space-8) var(--gutter) var(--space-section);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--color-rule);
+  text-underline-offset: 0.22em;
+  transition: color var(--duration-fast), text-decoration-color var(--duration-fast);
+}
+
+a:hover {
+  color: var(--color-accent);
+  text-decoration-color: currentColor;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--color-accent-soft);
+}
+
+/* ---- shared pieces ---- */
+
+.meta {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.page-header {
+  margin: var(--space-8) 0 var(--space-8);
+  padding-bottom: var(--space-6);
+  border-bottom: var(--border-strong);
+}
+
+.page-title {
+  margin: 0;
+  font-size: var(--text-4xl);
+}
+
+.page-lede {
+  margin: var(--space-2) 0 0;
+  max-width: 34rem;
+  color: var(--color-muted);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 2.25rem;
+  padding: 0 var(--space-4);
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--color-on-accent);
+  background: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  cursor: pointer;
+  transition: background var(--duration-fast), border-color var(--duration-fast), color var(--duration-fast);
+}
+
+.btn:hover:not(:disabled) {
+  color: var(--color-on-accent);
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.btn-outline {
+  color: var(--color-text);
+  background: transparent;
+  border-color: var(--color-border);
+}
+
+.btn-outline:hover:not(:disabled) {
+  color: var(--color-on-accent);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-  
-  * {
-    box-sizing: border-box;
-    margin: 0;
+}
+
+@page {
+  size: A4;
+  margin: 12mm 14mm;
+}
+
+@media print {
+  :root,
+  :root:not([data-theme='light']),
+  :root[data-theme='dark'] {
+    color-scheme: light;
+    --color-bg: white;
+    --color-surface: white;
+    --color-text: #111;
+    --color-muted: #555;
+    --color-border: #111;
+    --color-rule: #ccc;
+    --color-accent: #111;
+  }
+
+  html,
+  body {
+    background: white;
+    color: #111;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  main {
+    max-width: none;
     padding: 0;
   }
-  
-  body {
-    font-family: var(--font-sans);
-    color: var(--color-text);
-    background-color: var(--color-background);
-    line-height: 1.6;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-serif);
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 1rem;
-  }
-  
-  h1 {
-    font-size: 2.5rem;
-  }
-  
-  h2 {
-    font-size: 2rem;
-  }
-  
-  p {
-    margin-bottom: 1rem;
-  }
-  
+
   a {
-    color: var(--color-accent);
+    color: inherit;
     text-decoration: none;
   }
-  
-  .layout-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 1rem;
+
+  .no-print {
+    display: none !important;
   }
-  
-  main {
-    padding: 1rem 0;
-  }
-  
-  article {
-    margin-bottom: 3rem;
-  }
-  
-  img {
-    max-width: 100%;
-    height: auto;
-  }
+}

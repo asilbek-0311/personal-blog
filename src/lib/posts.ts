@@ -1,15 +1,9 @@
-// src/lib/posts.ts
-import fs from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
 import matter from 'gray-matter';
 
-const postsDirectory = path.join(process.cwd(), 'content/posts');
-console.log(`Current directory: ${process.cwd()}`);
-console.log(`Posts directory: ${postsDirectory}`);
-// Ensure the posts directory exists
-if (!fs.existsSync(postsDirectory)) {
-  console.error(`Posts directory does not exist: ${postsDirectory}`);
-}
+const POSTS_DIR = path.join(process.cwd(), 'content/posts');
+const WORDS_PER_MINUTE = 220;
 
 export interface Post {
   slug: string;
@@ -18,64 +12,57 @@ export interface Post {
   excerpt: string;
   content: string;
   coverImage?: string;
+  readingMinutes: number;
+}
+
+function toPost(slug: string, raw: string): Post | null {
+  const { data, content } = matter(raw);
+  if (typeof data.title !== 'string' || typeof data.date !== 'string') {
+    console.warn(`[posts] Skipping "${slug}": frontmatter needs string "title" and "date".`);
+    return null;
+  }
+
+  const words = content.split(/\s+/).filter(Boolean).length;
+  return {
+    slug,
+    title: data.title,
+    date: data.date,
+    excerpt: typeof data.excerpt === 'string' ? data.excerpt.trim() : '',
+    coverImage: typeof data.coverImage === 'string' ? data.coverImage : undefined,
+    content,
+    readingMinutes: Math.max(1, Math.round(words / WORDS_PER_MINUTE)),
+  };
 }
 
 export async function getPosts(): Promise<Post[]> {
-  // Ensure the posts directory exists
-  if (!fs.existsSync(postsDirectory)) {
+  let files: string[];
+  try {
+    files = await fs.readdir(POSTS_DIR);
+  } catch (error) {
+    console.error(`[posts] Cannot read ${POSTS_DIR}`, error);
     return [];
   }
 
-  const fileNames = fs.readdirSync(postsDirectory);
-  const allPostsData = fileNames
-    .filter(fileName => fileName.endsWith('.md'))
-    .map(fileName => {
-      // Remove ".md" from file name to get slug
-      const slug = fileName.replace(/\.md$/, '');
+  const posts = await Promise.all(
+    files
+      .filter((file) => file.endsWith('.md'))
+      .map(async (file) => toPost(file.replace(/\.md$/, ''), await fs.readFile(path.join(POSTS_DIR, file), 'utf8'))),
+  );
 
-      // Read markdown file as string
-      const fullPath = path.join(postsDirectory, fileName);
-      const fileContents = fs.readFileSync(fullPath, 'utf8');
-
-      // Use gray-matter to parse the post metadata section
-      const matterResult = matter(fileContents);
-
-      // Combine the data with the slug
-      return {
-        slug,
-        title: matterResult.data.title,
-        date: matterResult.data.date,
-        excerpt: matterResult.data.excerpt || '',
-        coverImage: matterResult.data.coverImage || '',
-        content: matterResult.content,
-      };
-    });
-
-  // Sort posts by date
-  return allPostsData.sort((a, b) => {
-    if (a.date < b.date) {
-      return 1;
-    } else {
-      return -1;
-    }
-  });
+  return posts.filter((post): post is Post => post !== null).sort((a, b) => b.date.localeCompare(a.date));
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
-  try {
-    const fullPath = path.join(postsDirectory, `${slug}.md`);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
-    const { data, content } = matter(fileContents);
+  // Slugs come from the URL: only allow plain file names inside the posts folder.
+  if (slug.includes('/') || slug.includes('\\') || slug.startsWith('.')) return null;
 
-    return {
-      slug,
-      title: data.title,
-      date: data.date,
-      excerpt: data.excerpt || '',
-      coverImage: data.coverImage || '',
-      content,
-    };
+  try {
+    return toPost(slug, await fs.readFile(path.join(POSTS_DIR, `${slug}.md`), 'utf8'));
   } catch {
     return null;
   }
+}
+
+export function formatDate(date: string, month: 'long' | 'short' = 'long'): string {
+  return new Date(date).toLocaleDateString('en-US', { year: 'numeric', month, day: 'numeric', timeZone: 'UTC' });
 }

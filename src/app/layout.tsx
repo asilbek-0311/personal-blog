@@ -1,43 +1,40 @@
-// src/app/layout.tsx
-import '../styles/globals.css';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import { Inter, Playfair_Display } from 'next/font/google';
+import type { Metadata } from 'next';
+import { Noto_Sans, Playfair_Display } from 'next/font/google';
+import SiteFooter from '@/components/site/SiteFooter';
+import SiteHeader from '@/components/site/SiteHeader';
+import { THEME_INIT_SCRIPT } from '@/components/site/theme';
+import '@/styles/globals.css';
 
-// Define fonts (similar to ithaca.xyz which uses a serif-sans combination)
-const inter = Inter({ 
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter',
-});
-
-const playfair = Playfair_Display({ 
+const playfair = Playfair_Display({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-playfair',
 });
 
-export const metadata = {
-  title: 'Asilbeks Blog',
-  description: 'Amazing personal website of Asilbek, a software developer and tech enthusiast.',
-  
+const notoSans = Noto_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['400', '600'],
+  variable: '--font-noto-sans',
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL('https://asilbek.page'),
+  title: { default: 'Asilbek Abdullaev', template: '%s · Asilbek' },
+  description: 'Writing, projects, resume, and a small koala that knows all about them.',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="en" className={`${playfair.variable} ${notoSans.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Static string: applies the saved theme before first paint to avoid a flash. */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
       <body>
-        <div className="layout-container">
-          <Header />
-          <main>
-            {children}
-          </main>
-          <Footer />
-        </div>
+        <SiteHeader />
+        <main>{children}</main>
+        <SiteFooter />
       </body>
     </html>
   );

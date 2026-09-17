@@ -1,0 +1,153 @@
+/* Article body. Applied with className="prose". */
+
+.prose {
+  max-width: var(--width-prose);
+  font-size: var(--text-lg);
+  line-height: 1.75;
+  overflow-wrap: break-word;
+}
+
+.prose > * + * {
+  margin-top: 1.25em;
+}
+
+.prose p,
+.prose ul,
+.prose ol,
+.prose blockquote,
+.prose pre,
+.prose table,
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  margin-bottom: 0;
+}
+
+.prose h1,
+.prose h2 {
+  margin-top: 2em;
+  font-size: var(--text-2xl);
+}
+
+.prose h3,
+.prose h4 {
+  margin-top: 1.75em;
+  font-size: var(--text-xl);
+}
+
+.prose h1 + *,
+.prose h2 + *,
+.prose h3 + *,
+.prose h4 + * {
+  margin-top: 0.5em;
+}
+
+.prose .anchor {
+  display: none;
+}
+
+.prose a {
+  text-decoration-color: var(--color-accent);
+}
+
+.prose strong {
+  font-weight: 600;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.25em;
+}
+
+.prose li + li {
+  margin-top: 0.4em;
+}
+
+.prose li::marker {
+  color: var(--color-muted);
+}
+
+.prose blockquote {
+  margin-left: 0;
+  padding-left: var(--space-4);
+  border-left: 2px solid var(--color-accent);
+  color: var(--color-muted);
+}
+
+.prose hr {
+  margin: 2.5em 0;
+  border: 0;
+  border-top: var(--border-soft);
+}
+
+.prose img,
+.prose iframe,
+.prose video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
+  border: var(--border-soft);
+}
+
+.prose iframe {
+  width: 100%;
+  min-height: 320px;
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+}
+
+.prose :not(pre) > code {
+  padding: 0.1em 0.3em;
+  background: var(--color-surface-2);
+}
+
+.prose pre {
+  padding: var(--space-4);
+  overflow-x: auto;
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  background: var(--color-surface);
+  border: var(--border-soft);
+}
+
+.prose pre code {
+  font-size: inherit;
+}
+
+.prose table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: var(--text-base);
+}
+
+.prose th,
+.prose td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: var(--border-soft);
+  text-align: left;
+}
+
+.prose th {
+  font-weight: 600;
+  border-bottom: var(--border-strong);
+}
+
+/* sugar-high syntax colours */
+.prose pre code {
+  --sh-class: var(--color-accent);
+  --sh-identifier: var(--color-text);
+  --sh-sign: var(--color-muted);
+  --sh-property: var(--color-accent);
+  --sh-entity: oklch(52% 0.1 60);
+  --sh-jsxliterals: oklch(52% 0.1 60);
+  --sh-string: oklch(50% 0.09 130);
+  --sh-keyword: var(--color-accent);
+  --sh-comment: var(--color-muted);
+}

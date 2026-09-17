@@ -51,7 +51,7 @@ function CustomLink(props: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
 
 function RoundedImage(props: { src: string; alt?: string; width?: number | `${number}`; height?: number | `${number}` } & Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'src' | 'width' | 'height'>) {
   const { src, alt, width, height, ...rest } = props;
-  return <Image src={src} alt={alt || ''} className="rounded-lg" width={width} height={height} {...rest} />
+  return <Image src={src} alt={alt || ''} width={width} height={height} {...rest} />
 }
 
 function Code({ children, ...props }: { children: string; [key: string]: unknown }) {

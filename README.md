@@ -1,96 +1,57 @@
-# asilbek.dev 🚀
+# asilbek.page
 
-My personal blog and portfolio — built with Next.js and featuring an interactive terminal interface.
+Personal site: a blog, a projects page, a resume, and **Koko**, a pixel koala on the home page who has read every article and can chat about them.
 
-🌐 **Live:** [asilbek-page](https://asilbek-page.vercel.app) 
+## Structure
 
----
-
-## ✨ Features
-
-- **Terminal Interface** — Navigate the site using commands like a real terminal
-- **AI Chat** — Chat with an AI assistant powered by Google Gemini
-- **Blog** — Articles about tech, blockchain, and development
-- **Projects** — Showcase of my work
-- **Thoughts** — Quick notes and ideas
-
-## 🛠️ Tech Stack
-
-- Next.js 15
-- React
-- TypeScript
-- Google Gemini AI
-
-## 🖥️ Terminal Commands
-
-```bash
-help        # Show all commands
-/blog       # Navigate to blog
-/projects   # View projects
-/thoughts   # See thoughts
-/about      # About me
-/ai         # Enter AI chat mode
-/stop       # Exit AI mode
-contact     # Contact info
-clear       # Clear terminal
+```text
+content/posts/*.md          articles (frontmatter: title, date, excerpt, coverImage?)
+src/content/profile.ts      resume data (resume page + Koko)
+src/content/projects.ts     projects list (page + Koko)
+src/app/page.tsx            home: Koko chat
+src/app/resume/             resume page (print to PDF)
+src/app/blog/               blog index and article pages
+src/app/projects/           projects page
+src/app/api/chat/route.ts   streaming Gemini chat
+src/components/agent/       Koko: pixel sprite, chat UI, chat hook
+src/components/site/        header, footer, light/dark toggle
+src/lib/agent/              system prompt, request validation, rate limit
+src/styles/                 tokens, globals, article typography
 ```
 
-## 🚀 Getting Started
+## How Koko knows things
+
+Every request sends Gemini a system prompt built from `profile.ts`, `projects.ts` and the full text of every post (see `src/lib/agent/prompt.ts`). No database or vector search. Publish a new `.md` post, redeploy, and Koko knows about it.
+
+## Writing a post
+
+Add `content/posts/my-post.md`:
+
+```md
+---
+title: "My post"
+date: "2026-09-17"
+excerpt: "One-line summary"
+---
+
+Markdown / MDX content…
+```
+
+It appears at `/blog/my-post`.
+
+## Development
 
 ```bash
-# Clone the repo
-git clone https://github.com/asilbek-0311/my-blog.git
-
-# Install dependencies
 npm install
-
-# Set up environment variables
-cp .env.example .env.local
-# Add your GEMINI_API_KEY
-
-# Run development server
+cp .env.example .env   # then set GEMINI_API_KEY
 npm run dev
+npm test               # unit tests (vitest)
+npm run build
 ```
 
-## 🔧 Environment Variables
+Environment variables:
 
-```bash
-GEMINI_API_KEY=your_gemini_api_key_here
-```
-
-Get a free Gemini API key at [makersuite.google.com](https://makersuite.google.com/app/apikey)
-
-## 💡 Suggestions Welcome!
-
-Got ideas for new features or improvements? I'd love to hear them!
-
-- Open an [Issue](../../issues) with your suggestion
-- Found a bug? Let me know!
-- Want to contribute? PRs are welcome
-
-### Some ideas I'm considering
-
-- 📊 Reading time estimates for blog posts
-- 🌙 Light/dark mode toggle
-- 📱 Mobile terminal gestures
-- 🔍 Search functionality
-- 📬 Newsletter subscription
-- 💬 Comments on blog posts
-
-**Have a better idea? Open an issue!**
-
-## 📬 Contact
-
-- Twitter: [@asil_beck](https://twitter.com/asil_beck)
-- LinkedIn: [asilbek0311](https://www.linkedin.com/in/asilbek0311/)
-- Telegram: [@asilbek_abdullayev](https://t.me/asilbek_abdullayev)
-
----
-
-<div align="center">
-
-**Built with ☕ and curiosity**
-
-⭐ Star this repo if you like it!
-
-</div>
+| Name | Required | Default |
+|------|----------|---------|
+| `GEMINI_API_KEY` | yes | none |
+| `GEMINI_MODEL` | no | `gemini-2.5-flash` |

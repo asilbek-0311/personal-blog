@@ -1,0 +1,111 @@
+/*
+ * Editorial palette (shadcn Sera layout + Preline Retro geometry).
+ * Light = cream paper. Dark = warm charcoal. Accent = everglade green.
+ * Theme is chosen by [data-theme] on <html>, falling back to the OS setting.
+ */
+
+:root {
+  color-scheme: light;
+
+  --color-bg: oklch(96.4% 0.018 88);
+  --color-surface: oklch(98.4% 0.01 90);
+  --color-surface-2: oklch(93% 0.022 86);
+  --color-text: oklch(23% 0.015 70);
+  --color-muted: oklch(47% 0.015 70);
+  --color-border: oklch(23% 0.015 70);
+  --color-rule: oklch(86% 0.02 85);
+  --color-accent: oklch(35% 0.055 158); /* everglade #1C402E-ish */
+  --color-accent-hover: oklch(29% 0.05 158);
+  --color-accent-soft: oklch(35% 0.055 158 / 0.09);
+  --color-on-accent: oklch(97% 0.015 88);
+  --color-focus: oklch(35% 0.055 158 / 0.55);
+
+  --koala-outline: oklch(23% 0.015 70);
+  --koala-fur: oklch(72% 0.01 250);
+  --koala-inner: oklch(88% 0.03 20);
+  --koala-nose: oklch(27% 0.015 250);
+  --koala-eye: oklch(23% 0.015 70);
+  --koala-shine: oklch(99% 0 0);
+  --koala-cheek: oklch(78% 0.08 15);
+
+  --font-serif: var(--font-playfair), Georgia, 'Times New Roman', serif;
+  --font-sans: var(--font-noto-sans), system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Tailwind type scale. */
+  --text-xs: 0.75rem; /* 12 */
+  --text-sm: 0.875rem; /* 14 */
+  --text-base: 1rem; /* 16 */
+  --text-lg: 1.125rem; /* 18 */
+  --text-xl: 1.25rem; /* 20 */
+  --text-2xl: 1.5rem; /* 24 */
+  --text-3xl: 1.875rem; /* 30 */
+  --text-4xl: 2.25rem; /* 36 */
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-section: clamp(3rem, 2rem + 4vw, 6rem);
+
+  --width-prose: 40rem;
+  --width-page: 48rem;
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2rem);
+
+  --border-strong: 1px solid var(--color-border);
+  --border-soft: 1px solid var(--color-rule);
+  --radius: 0;
+
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+
+    --color-bg: oklch(19.5% 0.008 75);
+    --color-surface: oklch(23% 0.009 75);
+    --color-surface-2: oklch(26.5% 0.01 75);
+    --color-text: oklch(92% 0.018 88);
+    --color-muted: oklch(69% 0.015 85);
+    --color-border: oklch(58% 0.012 85);
+    --color-rule: oklch(32% 0.01 75);
+    --color-accent: oklch(74% 0.085 158);
+    --color-accent-hover: oklch(80% 0.085 158);
+    --color-accent-soft: oklch(74% 0.085 158 / 0.12);
+    --color-on-accent: oklch(19.5% 0.008 75);
+    --color-focus: oklch(74% 0.085 158 / 0.6);
+
+    --koala-outline: oklch(90% 0.018 88);
+    --koala-fur: oklch(66% 0.012 250);
+    --koala-nose: oklch(20% 0.01 75);
+    --koala-eye: oklch(19.5% 0.008 75);
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-bg: oklch(19.5% 0.008 75);
+  --color-surface: oklch(23% 0.009 75);
+  --color-surface-2: oklch(26.5% 0.01 75);
+  --color-text: oklch(92% 0.018 88);
+  --color-muted: oklch(69% 0.015 85);
+  --color-border: oklch(58% 0.012 85);
+  --color-rule: oklch(32% 0.01 75);
+  --color-accent: oklch(74% 0.085 158);
+  --color-accent-hover: oklch(80% 0.085 158);
+  --color-accent-soft: oklch(74% 0.085 158 / 0.12);
+  --color-on-accent: oklch(19.5% 0.008 75);
+  --color-focus: oklch(74% 0.085 158 / 0.6);
+
+  --koala-outline: oklch(90% 0.018 88);
+  --koala-fur: oklch(66% 0.012 250);
+  --koala-nose: oklch(20% 0.01 75);
+  --koala-eye: oklch(19.5% 0.008 75);
+}
