@@ -2,8 +2,7 @@ import { ImageResponse } from 'next/og';
 import { RESUME } from '@/content/profile';
 import { getPostBySlug } from '@/lib/posts';
 
-export const size = { width: 1200, height: 630 };
-export const contentType = 'image/png';
+const SIZE = { width: 1200, height: 630 };
 
 const BG = '#f7f2e8';
 const INK = '#221f1b';
@@ -47,6 +46,6 @@ export async function GET(_request: Request, { params }: { params: Promise<{ slu
         </div>
       </div>
     ),
-    size,
+    SIZE,
   );
 }
