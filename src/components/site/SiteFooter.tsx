@@ -19,6 +19,12 @@ export default function SiteFooter() {
         <li>
           <a href={`mailto:${CONTACT.email}`}>Email</a>
         </li>
+        <li>
+          <a href="/feed.xml">RSS</a>
+        </li>
+        <li>
+          <a href="/llms.txt" title="A map of this site for language models">llms.txt</a>
+        </li>
       </ul>
     </footer>
   );

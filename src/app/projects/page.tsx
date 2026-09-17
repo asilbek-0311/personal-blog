@@ -1,10 +1,18 @@
 import type { Metadata } from 'next';
+import { ProjectsData } from '@/components/site/StructuredData';
 import { GITHUB_URL, projects } from '@/content/projects';
 import styles from './projects.module.css';
 
+const DESCRIPTION = 'Things Asilbek has built: communities, smart contracts and web apps.';
+
 export const metadata: Metadata = {
   title: 'Projects',
-  description: 'Things Asilbek has built: communities, smart contracts and web apps.',
+  description: DESCRIPTION,
+  alternates: {
+    canonical: '/projects',
+    types: { 'text/markdown': [{ url: '/projects.md', title: 'This page as markdown' }] },
+  },
+  openGraph: { title: 'Projects', description: DESCRIPTION, url: '/projects', type: 'website' },
 };
 
 const initials = (title: string) =>
@@ -18,6 +26,7 @@ const initials = (title: string) =>
 export default function ProjectsPage() {
   return (
     <>
+      <ProjectsData />
       <header className="page-header">
         <h1 className="page-title">Projects</h1>
         <p className="page-lede">

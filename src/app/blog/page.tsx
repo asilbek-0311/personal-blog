@@ -3,9 +3,13 @@ import Link from 'next/link';
 import { formatDate, getPosts } from '@/lib/posts';
 import styles from './blog.module.css';
 
+const DESCRIPTION = 'Articles on CPUs, blockchains, AI tooling and whatever Asilbek is learning.';
+
 export const metadata: Metadata = {
   title: 'Blog',
-  description: 'Articles on CPUs, blockchains, AI tooling and whatever Asilbek is learning.',
+  description: DESCRIPTION,
+  alternates: { canonical: '/blog', types: { 'text/markdown': [{ url: '/blog.md', title: 'This page as markdown' }] } },
+  openGraph: { title: 'Blog', description: DESCRIPTION, url: '/blog', type: 'website' },
 };
 
 export default async function BlogPage() {

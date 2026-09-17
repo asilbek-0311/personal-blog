@@ -3,9 +3,16 @@ import { CONTACT, RESUME, type TimelineEntry } from '@/content/profile';
 import PrintButton from './PrintButton';
 import styles from './resume.module.css';
 
+const DESCRIPTION = `${RESUME.name}: ${RESUME.headline}. Experience, education and skills.`;
+
 export const metadata: Metadata = {
   title: 'Resume',
-  description: `${RESUME.name}: ${RESUME.headline}.`,
+  description: DESCRIPTION,
+  alternates: {
+    canonical: '/resume',
+    types: { 'text/markdown': [{ url: '/resume.md', title: 'This page as markdown' }] },
+  },
+  openGraph: { title: `${RESUME.name} — Resume`, description: DESCRIPTION, url: '/resume', type: 'profile' },
 };
 
 function Timeline({ id, title, entries }: { id: string; title: string; entries: TimelineEntry[] }) {
