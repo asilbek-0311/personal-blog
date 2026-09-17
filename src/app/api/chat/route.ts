@@ -5,8 +5,10 @@ import { buildSystemPrompt } from '@/lib/agent/prompt';
 import { createRateLimiter } from '@/lib/agent/rate-limit';
 import { parseChatRequest } from '@/lib/agent/validate';
 import { getPosts } from '@/lib/posts';
+import { thinkingConfigFor } from './thinking';
+import { upstreamStatus } from './upstream';
 
-const MODEL = process.env.GEMINI_MODEL ?? 'gemini-2.5-flash';
+const MODEL = process.env.GEMINI_MODEL ?? 'gemini-3.5-flash-lite';
 const limiter = createRateLimiter({ limit: 20, windowMs: 10 * 60_000 });
 
 let client: GoogleGenAI | null = null;
@@ -28,6 +30,19 @@ function getSystemPrompt(): Promise<string> {
 
 const jsonError = (error: string, status: number, headers?: HeadersInit) =>
   Response.json({ error }, { status, headers });
+
+function upstreamError(error: unknown) {
+  switch (upstreamStatus(error)) {
+    case 429:
+      // Google's free tier is a small number of requests per day per model.
+      return jsonError("I've hit today's usage limit for the AI. Try again later.", 429);
+    case 401:
+    case 403:
+      return jsonError('Chat is not configured right now.', 503);
+    default:
+      return jsonError('My connection glitched. Please try again.', 502);
+  }
+}
 
 export async function POST(request: Request) {
   const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'anonymous';
@@ -56,13 +71,13 @@ export async function POST(request: Request) {
         systemInstruction: await getSystemPrompt(),
         temperature: 0.8,
         maxOutputTokens: 700,
-        thinkingConfig: { thinkingBudget: 0 },
+        ...thinkingConfigFor(MODEL),
         abortSignal: request.signal,
       },
     });
   } catch (error) {
     console.error('[chat] Gemini request failed', error);
-    return jsonError('My connection glitched. Please try again.', 502);
+    return upstreamError(error);
   }
 
   const encoder = new TextEncoder();

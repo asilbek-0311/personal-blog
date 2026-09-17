@@ -22,7 +22,7 @@
 }
 
 .summary {
-  margin: 0;
+  margin: 0 0 var(--space-8);
   max-width: var(--width-prose);
   font-size: var(--text-lg);
   line-height: 1.7;
@@ -35,8 +35,9 @@
 .sectionTitle {
   margin: 0 0 var(--space-6);
   padding-bottom: var(--space-2);
-  font-size: var(--text-2xl);
-  border-bottom: var(--border-strong);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  border-bottom: var(--border-soft);
 }
 
 .timeline {
@@ -50,26 +51,27 @@
 
 .entry {
   display: grid;
-  grid-template-columns: 10rem 1fr;
+  grid-template-columns: 9rem 1fr;
   gap: var(--space-6);
   align-items: baseline;
 }
 
 .role {
   margin: 0;
-  font-family: var(--font-sans);
   font-size: var(--text-base);
   font-weight: 600;
 }
 
 .org {
   margin: 0;
+  font-size: var(--text-sm);
   color: var(--color-muted);
 }
 
 .points {
   margin: var(--space-2) 0 0;
   padding-left: 1.1em;
+  font-size: var(--text-sm);
 }
 
 .points li + li {
@@ -77,7 +79,7 @@
 }
 
 .points li::marker {
-  color: var(--color-muted);
+  color: var(--color-border-strong);
 }
 
 .skills {
@@ -89,6 +91,13 @@
 
 .skills dd {
   margin: 0;
+  font-size: var(--text-sm);
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 @media (max-width: 36rem) {
@@ -115,6 +124,7 @@
   .resume :global(.page-header) {
     margin: 0 0 8pt;
     padding-bottom: 6pt;
+    border-bottom: 1px solid #111;
   }
 
   .resume :global(.page-title) {
@@ -145,11 +155,39 @@
 
   .section {
     margin-top: 10pt;
+    padding: 0;
+    background: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .summary {
+    margin-bottom: 0;
+  }
+
+  .pills {
+    display: block;
+  }
+
+  .pills :global(.pill) {
+    display: inline;
+    padding: 0;
+    font-size: inherit;
+    font-weight: 400;
+    color: inherit;
+    background: none;
+    border-radius: 0;
+  }
+
+  .pills :global(.pill):not(:last-child)::after {
+    content: ', ';
   }
 
   .sectionTitle {
     margin-bottom: 5pt;
     padding-bottom: 2pt;
+    border-bottom: 1px solid #111;
     font-family: var(--font-sans);
     font-size: 10.5pt;
     font-weight: 600;
@@ -178,7 +216,12 @@
     font-size: 9pt;
   }
 
+  .skills dd {
+    font-size: inherit;
+  }
+
   .points {
+    font-size: inherit;
     margin-top: 2pt;
     padding-left: 10pt;
     list-style: disc;

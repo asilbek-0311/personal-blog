@@ -73,7 +73,13 @@ export default function ResumePage() {
           {RESUME.skills.map((group) => (
             <div key={group.label} className={styles.entry}>
               <dt className="meta">{group.label}</dt>
-              <dd>{group.items.join(', ')}</dd>
+              <dd className={styles.pills}>
+                {group.items.map((item) => (
+                  <span key={item} className="pill">
+                    {item}
+                  </span>
+                ))}
+              </dd>
             </div>
           ))}
           <div className={styles.entry}>

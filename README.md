@@ -54,4 +54,4 @@ Environment variables:
 | Name | Required | Default |
 |------|----------|---------|
 | `GEMINI_API_KEY` | yes | none |
-| `GEMINI_MODEL` | no | `gemini-2.5-flash` |
+| `GEMINI_MODEL` | no | `gemini-3.5-flash-lite` |

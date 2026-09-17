@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { CustomMDX } from '@/components/mdx';
-import { AGENT_NAME } from '@/content/profile';
 import { formatDate, getPostBySlug, getPosts } from '@/lib/posts';
 import styles from '../blog.module.css';
 
@@ -51,9 +50,12 @@ export default async function ArticlePage({ params }: Params) {
         <CustomMDX source={post.content} />
       </div>
 
-      <p className={`${styles.askKoala} no-print`}>
-        Questions about this one? <Link href="/">Ask {AGENT_NAME}</Link>, the koala has read it.
-      </p>
+      <aside className={`${styles.askAgent} no-print`}>
+        <p>Questions about this article? Ask on the home page.</p>
+        <Link href="/" className="btn">
+          Ask a question
+        </Link>
+      </aside>
     </article>
   );
 }

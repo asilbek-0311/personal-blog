@@ -7,6 +7,14 @@ export const metadata: Metadata = {
   description: 'Things Asilbek has built: communities, smart contracts and web apps.',
 };
 
+const initials = (title: string) =>
+  title
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((word) => word[0])
+    .join('')
+    .toUpperCase();
+
 export default function ProjectsPage() {
   return (
     <>
@@ -21,23 +29,37 @@ export default function ProjectsPage() {
         </p>
       </header>
 
-      <ol className={styles.list}>
+      <ul className={styles.grid}>
         {projects.map((project) => (
-          <li key={project.title} className={styles.item}>
-            <div className={styles.heading}>
-              <h2 className={styles.title}>{project.title}</h2>
-              <span className={styles.status} data-status={project.status}>
-                {project.status}
+          <li key={project.title}>
+            <a href={project.link} target="_blank" rel="noopener noreferrer" className={styles.project}>
+              <span className={styles.top}>
+                <span className={styles.mark} aria-hidden="true">
+                  {initials(project.title)}
+                </span>
+                <span className={styles.status} data-status={project.status}>
+                  {project.status}
+                </span>
               </span>
-            </div>
-            <p className={styles.description}>{project.description}</p>
-            <p className="meta">{project.technologies.join(' · ')}</p>
-            <a href={project.link} target="_blank" rel="noopener noreferrer" className={`btn btn-outline ${styles.visit}`}>
-              Visit<span className="visually-hidden"> {project.title}</span> <span aria-hidden="true">↗</span>
+
+              <span className={styles.title}>{project.title}</span>
+              <span className={styles.description}>{project.description}</span>
+
+              <span className={styles.tech}>
+                {project.technologies.map((tech) => (
+                  <span key={tech} className="pill">
+                    {tech}
+                  </span>
+                ))}
+              </span>
+
+              <span className={styles.visit} aria-hidden="true">
+                Visit ↗
+              </span>
             </a>
           </li>
         ))}
-      </ol>
+      </ul>
     </>
   );
 }

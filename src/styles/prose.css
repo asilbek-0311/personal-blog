@@ -48,7 +48,13 @@
 }
 
 .prose a {
-  text-decoration-color: var(--color-accent);
+  color: var(--color-accent);
+  text-decoration-color: var(--color-accent-soft);
+  text-decoration-thickness: 2px;
+}
+
+.prose a:hover {
+  text-decoration-color: currentColor;
 }
 
 .prose strong {
@@ -70,15 +76,17 @@
 
 .prose blockquote {
   margin-left: 0;
-  padding-left: var(--space-4);
-  border-left: 2px solid var(--color-accent);
+  padding: var(--space-4) var(--space-6);
   color: var(--color-muted);
+  background: var(--color-surface-2);
+  border-radius: var(--radius-md);
 }
 
 .prose hr {
-  margin: 2.5em 0;
+  margin: 2.5em auto;
+  width: 5rem;
   border: 0;
-  border-top: var(--border-soft);
+  border-top: var(--border-strong);
 }
 
 .prose img,
@@ -88,12 +96,14 @@
   max-width: 100%;
   height: auto;
   margin-inline: auto;
-  border: var(--border-soft);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
 }
 
 .prose iframe {
   width: 100%;
   min-height: 320px;
+  border: var(--border-soft);
 }
 
 .prose code {
@@ -102,17 +112,20 @@
 }
 
 .prose :not(pre) > code {
-  padding: 0.1em 0.3em;
+  padding: 0.12em 0.4em;
   background: var(--color-surface-2);
+  border-radius: 6px;
 }
 
 .prose pre {
-  padding: var(--space-4);
+  padding: var(--space-4) 18px;
   overflow-x: auto;
   font-size: var(--text-sm);
   line-height: 1.6;
   background: var(--color-surface);
   border: var(--border-soft);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
 }
 
 .prose pre code {

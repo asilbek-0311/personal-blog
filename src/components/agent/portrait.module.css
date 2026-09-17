@@ -1,0 +1,213 @@
+.portrait {
+  --look-x: 0;
+  --look-y: 0;
+
+  display: block;
+  width: clamp(150px, 32vw, 190px);
+  height: auto;
+  overflow: visible;
+  color: var(--portrait-ink);
+}
+
+/* The drawing keeps its black-on-cream look in both themes. */
+.skin,
+.strand {
+  fill: var(--portrait-skin);
+}
+
+.strand {
+  stroke: var(--portrait-skin);
+}
+
+/*
+ * Dark mode: the black masses would merge into the dark page, so trace the
+ * silhouette with a light outline. Four offset shadows make an even edge.
+ */
+@media (prefers-color-scheme: dark) {
+  :global(:root:not([data-theme='light'])) .portrait {
+    filter: drop-shadow(2px 0 0 var(--portrait-outline)) drop-shadow(-2px 0 0 var(--portrait-outline))
+      drop-shadow(0 2px 0 var(--portrait-outline)) drop-shadow(0 -2px 0 var(--portrait-outline));
+  }
+}
+
+:global(:root[data-theme='dark']) .portrait {
+  filter: drop-shadow(2px 0 0 var(--portrait-outline)) drop-shadow(-2px 0 0 var(--portrait-outline))
+    drop-shadow(0 2px 0 var(--portrait-outline)) drop-shadow(0 -2px 0 var(--portrait-outline));
+}
+
+.mouthClosed {
+  fill: none;
+}
+
+/* Animated groups rotate/scale around their own box. */
+.body,
+.head,
+.face,
+.eyes,
+.eyesIdle,
+.eyesTalk,
+.eyesClosed,
+.mouthOpen {
+  transform-box: fill-box;
+}
+
+/* ---- depth: layers drift by different amounts ---- */
+
+.body {
+  transform: translate(calc(var(--look-x) * 3px), calc(var(--look-y) * 1.5px));
+}
+
+.head {
+  transform-origin: center bottom;
+  transform: translate(calc(var(--look-x) * 8px), calc(var(--look-y) * 5px));
+  animation: sway 6.5s ease-in-out infinite;
+}
+
+.face {
+  transform: translate(calc(var(--look-x) * 5px), calc(var(--look-y) * 4px));
+}
+
+.hair {
+  transform: translate(calc(var(--look-x) * -2px), calc(var(--look-y) * -1.5px));
+}
+
+/* ---- eyes: open by default, closed during a blink ---- */
+
+.eyesTalk,
+.eyesClosed {
+  opacity: 0;
+}
+
+.eyesIdle,
+.eyesTalk {
+  animation: blink 6.4s steps(1, end) infinite;
+}
+
+.eyesClosed {
+  animation: blink-closed 6.4s steps(1, end) infinite;
+}
+
+/* ---- mouth ---- */
+
+.mouthOpen {
+  opacity: 0;
+  transform-origin: center top;
+  transform: scaleY(0.35);
+}
+
+.browsTalk {
+  opacity: 0;
+}
+
+/* ---- moods ---- */
+
+.portrait[data-mood='thinking'] .head {
+  animation: think 2.8s ease-in-out infinite;
+}
+
+.portrait[data-mood='talking'] .head {
+  animation: nod 1.2s ease-in-out infinite;
+}
+
+.portrait[data-mood='talking'] .browsIdle {
+  opacity: 0;
+}
+
+.portrait[data-mood='talking'] .browsTalk {
+  opacity: 1;
+}
+
+.portrait[data-mood='talking'] .eyesIdle {
+  opacity: 0;
+  animation: none;
+}
+
+.portrait[data-mood='talking'] .eyesTalk {
+  animation: blink 6.4s steps(1, end) infinite;
+}
+
+.portrait[data-mood='talking'] .mouthClosed {
+  opacity: 0;
+}
+
+.portrait[data-mood='talking'] .mouthOpen {
+  opacity: 1;
+  animation: talk 0.42s ease-in-out infinite alternate;
+}
+
+.browsIdle,
+.browsTalk,
+.mouthClosed {
+  transition: opacity var(--duration-fast);
+}
+
+/* ---- keyframes ---- */
+
+@keyframes sway {
+  0%,
+  100% {
+    rotate: -0.7deg;
+  }
+  50% {
+    rotate: 0.7deg;
+  }
+}
+
+@keyframes think {
+  0%,
+  100% {
+    rotate: -3deg;
+  }
+  50% {
+    rotate: -1.5deg;
+  }
+}
+
+@keyframes nod {
+  0%,
+  100% {
+    rotate: 0deg;
+    translate: 0 0;
+  }
+  50% {
+    rotate: 1deg;
+    translate: 0 2px;
+  }
+}
+
+@keyframes blink {
+  0%,
+  95% {
+    opacity: 1;
+  }
+  96%,
+  99% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes blink-closed {
+  0%,
+  95% {
+    opacity: 0;
+  }
+  96%,
+  99% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes talk {
+  from {
+    transform: scaleY(0.4);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}

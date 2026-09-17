@@ -1,35 +1,34 @@
 /*
- * Editorial palette (shadcn Sera layout + Preline Retro geometry).
- * Light = cream paper. Dark = warm charcoal. Accent = everglade green.
+ * Clean, soft palette. Light = warm cream. Dark = warm charcoal.
+ * Accent = everglade green. Soft radii and shadows instead of hard lines.
  * Theme is chosen by [data-theme] on <html>, falling back to the OS setting.
  */
 
 :root {
   color-scheme: light;
 
-  --color-bg: oklch(96.4% 0.018 88);
-  --color-surface: oklch(98.4% 0.01 90);
-  --color-surface-2: oklch(93% 0.022 86);
-  --color-text: oklch(23% 0.015 70);
-  --color-muted: oklch(47% 0.015 70);
-  --color-border: oklch(23% 0.015 70);
-  --color-rule: oklch(86% 0.02 85);
-  --color-accent: oklch(35% 0.055 158); /* everglade #1C402E-ish */
-  --color-accent-hover: oklch(29% 0.05 158);
-  --color-accent-soft: oklch(35% 0.055 158 / 0.09);
-  --color-on-accent: oklch(97% 0.015 88);
-  --color-focus: oklch(35% 0.055 158 / 0.55);
+  --color-bg: oklch(97% 0.014 88);
+  --color-surface: oklch(99.2% 0.006 90);
+  --color-surface-2: oklch(94.5% 0.016 86);
+  --color-text: oklch(24% 0.012 70);
+  --color-muted: oklch(50% 0.012 70);
+  --color-border: oklch(90% 0.014 85);
+  --color-border-strong: oklch(80% 0.016 80);
+  --color-accent: oklch(38% 0.06 158); /* everglade */
+  --color-accent-hover: oklch(32% 0.055 158);
+  --color-accent-soft: oklch(38% 0.06 158 / 0.08);
+  --color-on-accent: oklch(98% 0.01 88);
+  --color-focus: oklch(38% 0.06 158 / 0.4);
 
-  --koala-outline: oklch(23% 0.015 70);
-  --koala-fur: oklch(72% 0.01 250);
-  --koala-inner: oklch(88% 0.03 20);
-  --koala-nose: oklch(27% 0.015 250);
-  --koala-eye: oklch(23% 0.015 70);
-  --koala-shine: oklch(99% 0 0);
-  --koala-cheek: oklch(78% 0.08 15);
+  --shadow-sm: 0 1px 2px oklch(30% 0.02 70 / 0.06);
+  --shadow-md: 0 1px 2px oklch(30% 0.02 70 / 0.04), 0 6px 20px -6px oklch(30% 0.02 70 / 0.12);
+  --shadow-lg: 0 2px 4px oklch(30% 0.02 70 / 0.04), 0 18px 40px -12px oklch(30% 0.02 70 / 0.18);
+
+  --portrait-ink: oklch(24% 0.012 70);
+  --portrait-skin: oklch(97% 0.014 88);
 
   --font-serif: var(--font-playfair), Georgia, 'Times New Roman', serif;
-  --font-sans: var(--font-noto-sans), system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-sans: var(--font-geist), system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
 
   /* Tailwind type scale. */
@@ -55,57 +54,69 @@
   --width-page: 48rem;
   --gutter: clamp(1rem, 0.5rem + 2.5vw, 2rem);
 
-  --border-strong: 1px solid var(--color-border);
-  --border-soft: 1px solid var(--color-rule);
-  --radius: 0;
+  --border-soft: 1px solid var(--color-border);
+  --border-strong: 1px solid var(--color-border-strong);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 999px;
 
   --duration-fast: 150ms;
   --duration-normal: 300ms;
+  --duration-slow: 500ms;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
     color-scheme: dark;
 
-    --color-bg: oklch(19.5% 0.008 75);
-    --color-surface: oklch(23% 0.009 75);
-    --color-surface-2: oklch(26.5% 0.01 75);
-    --color-text: oklch(92% 0.018 88);
-    --color-muted: oklch(69% 0.015 85);
-    --color-border: oklch(58% 0.012 85);
-    --color-rule: oklch(32% 0.01 75);
-    --color-accent: oklch(74% 0.085 158);
-    --color-accent-hover: oklch(80% 0.085 158);
-    --color-accent-soft: oklch(74% 0.085 158 / 0.12);
-    --color-on-accent: oklch(19.5% 0.008 75);
-    --color-focus: oklch(74% 0.085 158 / 0.6);
+    --color-bg: oklch(19% 0.008 75);
+    --color-surface: oklch(23.5% 0.009 75);
+    --color-surface-2: oklch(27% 0.01 75);
+    --color-text: oklch(93% 0.014 88);
+    --color-muted: oklch(70% 0.012 85);
+    --color-border: oklch(30% 0.01 75);
+    --color-border-strong: oklch(40% 0.012 75);
+    --color-accent: oklch(76% 0.08 158);
+    --color-accent-hover: oklch(82% 0.08 158);
+    --color-accent-soft: oklch(76% 0.08 158 / 0.12);
+    --color-on-accent: oklch(19% 0.008 75);
+    --color-focus: oklch(76% 0.08 158 / 0.45);
 
-    --koala-outline: oklch(90% 0.018 88);
-    --koala-fur: oklch(66% 0.012 250);
-    --koala-nose: oklch(20% 0.01 75);
-    --koala-eye: oklch(19.5% 0.008 75);
+    --shadow-sm: 0 1px 2px oklch(0% 0 0 / 0.3);
+    --shadow-md: 0 1px 2px oklch(0% 0 0 / 0.25), 0 8px 24px -8px oklch(0% 0 0 / 0.5);
+    --shadow-lg: 0 2px 4px oklch(0% 0 0 / 0.25), 0 20px 44px -12px oklch(0% 0 0 / 0.6);
+
+    --portrait-ink: oklch(24% 0.012 70);
+    --portrait-skin: oklch(95% 0.012 88);
+    --portrait-outline: oklch(95% 0.012 88);
   }
 }
 
 :root[data-theme='dark'] {
   color-scheme: dark;
 
-  --color-bg: oklch(19.5% 0.008 75);
-  --color-surface: oklch(23% 0.009 75);
-  --color-surface-2: oklch(26.5% 0.01 75);
-  --color-text: oklch(92% 0.018 88);
-  --color-muted: oklch(69% 0.015 85);
-  --color-border: oklch(58% 0.012 85);
-  --color-rule: oklch(32% 0.01 75);
-  --color-accent: oklch(74% 0.085 158);
-  --color-accent-hover: oklch(80% 0.085 158);
-  --color-accent-soft: oklch(74% 0.085 158 / 0.12);
-  --color-on-accent: oklch(19.5% 0.008 75);
-  --color-focus: oklch(74% 0.085 158 / 0.6);
+  --color-bg: oklch(19% 0.008 75);
+  --color-surface: oklch(23.5% 0.009 75);
+  --color-surface-2: oklch(27% 0.01 75);
+  --color-text: oklch(93% 0.014 88);
+  --color-muted: oklch(70% 0.012 85);
+  --color-border: oklch(30% 0.01 75);
+  --color-border-strong: oklch(40% 0.012 75);
+  --color-accent: oklch(76% 0.08 158);
+  --color-accent-hover: oklch(82% 0.08 158);
+  --color-accent-soft: oklch(76% 0.08 158 / 0.12);
+  --color-on-accent: oklch(19% 0.008 75);
+  --color-focus: oklch(76% 0.08 158 / 0.45);
 
-  --koala-outline: oklch(90% 0.018 88);
-  --koala-fur: oklch(66% 0.012 250);
-  --koala-nose: oklch(20% 0.01 75);
-  --koala-eye: oklch(19.5% 0.008 75);
+  --shadow-sm: 0 1px 2px oklch(0% 0 0 / 0.3);
+  --shadow-md: 0 1px 2px oklch(0% 0 0 / 0.25), 0 8px 24px -8px oklch(0% 0 0 / 0.5);
+  --shadow-lg: 0 2px 4px oklch(0% 0 0 / 0.25), 0 20px 44px -12px oklch(0% 0 0 / 0.6);
+
+  --portrait-ink: oklch(24% 0.012 70);
+  --portrait-skin: oklch(95% 0.012 88);
+  --portrait-outline: oklch(95% 0.012 88);
 }

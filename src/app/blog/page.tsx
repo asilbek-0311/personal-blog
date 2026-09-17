@@ -25,11 +25,14 @@ export default async function BlogPage() {
           {posts.map((post) => (
             <li key={post.slug}>
               <Link href={`/blog/${post.slug}`} className={styles.entry}>
-                <span className="meta">
-                  <time dateTime={post.date}>{formatDate(post.date)}</time> · {post.readingMinutes} min read
+                <span className={styles.entryText}>
+                  <span className={styles.entryTitle}>{post.title}</span>
+                  {post.excerpt && <span className={styles.entryExcerpt}>{post.excerpt}</span>}
                 </span>
-                <span className={styles.entryTitle}>{post.title}</span>
-                {post.excerpt && <span className={styles.entryExcerpt}>{post.excerpt}</span>}
+                <span className={styles.entryMeta}>
+                  <time dateTime={post.date}>{formatDate(post.date, 'short')}</time>
+                  <span className="pill">{post.readingMinutes} min</span>
+                </span>
               </Link>
             </li>
           ))}
