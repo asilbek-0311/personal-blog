@@ -69,8 +69,8 @@ export default function ResumePage() {
       <p className={styles.summary}>{RESUME.summary}</p>
 
       <Timeline id="experience" title="Experience" entries={RESUME.experience} />
-      <Timeline id="community" title="Community" entries={RESUME.community} />
       <Timeline id="education" title="Education" entries={RESUME.education} />
+      <Timeline id="community" title="Community" entries={RESUME.community} />
 
       <section className={styles.section} aria-labelledby="skills">
         <h2 id="skills" className={styles.sectionTitle}>

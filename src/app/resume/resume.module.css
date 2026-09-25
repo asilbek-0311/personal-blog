@@ -220,6 +220,11 @@
     font-size: inherit;
   }
 
+  /* Dates stay on one line; long skill labels wrap inside their column. */
+  .skills .entry > dt {
+    white-space: normal;
+  }
+
   .points {
     font-size: inherit;
     margin-top: 2pt;

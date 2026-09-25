@@ -33,30 +33,28 @@ export interface Resume {
 // Bullets flagged VERIFY there are left out until confirmed.
 export const RESUME: Resume = {
   name: 'Asilbek Abdullaev',
-  headline: 'Cloud & DevOps Engineer with blockchain and ZK knowledge',
+  headline: 'Cloud & DevOps Engineer with blockchain and cryptography knowledge',
   location: 'Tashkent, Uzbekistan (UTC+5) · open to remote and relocation',
   summary:
-    'Engineer with a blockchain, security-research and developer-relations background, now building and running cloud infrastructure. Runs Kubernetes, CI/CD and monitoring at Pixeel after a DevOps internship on Azure at EPAM; previously led developer relations at a ZK protocol and ran 60+ smart contract security analyses at an audit firm. Founded two developer communities totalling 500+ members. Working toward becoming a systems engineer.',
+    'Cloud and DevOps engineer who builds and runs production infrastructure: Kubernetes, CI/CD pipelines, infrastructure as code and observability. Runs a multi-environment Kubernetes platform on Hetzner Cloud at Pixeel after a DevOps internship on Azure at EPAM. Background in blockchain systems and applied cryptography, including zero-knowledge proofs and smart contract security, from integration and automation work at Zerobase and 60+ security analyses at Salus. Focused on automation, reliability and secure delivery.',
   experience: [
     {
-      title: 'DevOps Engineer & Product Manager',
+      title: 'DevOps Engineer',
       org: 'Pixeel',
       place: 'London, UK (Remote)',
       period: 'Jan 2026 – Present',
       points: [
-        'Run the Kubernetes cluster for Office Freund, an e-invoicing tool for Germany: 46 deployments across separate dev, staging and production environments.',
-        'Built the full CI/CD pipeline for Office Freund, on Hetzner Cloud with internal networking.',
-        'Set up monitoring and observability with Prometheus, Loki and Grafana.',
-        'Built the e-invoice service from scratch and designed the system architecture for the API business selling it.',
-        'Product Manager for Solarware, a CRM for solar panel companies in Germany: lead a team of 4 developers on roadmap, prioritisation and a UI redesign.',
-        'Grew the Office Freund dev team from 0 to 3 and own product delivery end to end.',
+        'Run the Kubernetes cluster for Office Freund, an e-invoicing platform for Germany: 46 deployments across separate dev, staging and production environments.',
+        'Built the full CI/CD pipeline for Office Freund, from build and test to automated deployment on Hetzner Cloud with internal networking.',
+        'Set up monitoring, logging and alerting with Prometheus, Loki and Grafana across all environments.',
+        'Designed the infrastructure and service architecture for the e-invoice API and automated its release process.',
       ],
     },
     {
       title: 'DevOps Engineer Intern, Azure Cloud',
       org: 'EPAM Systems',
       place: 'Tashkent, Uzbekistan',
-      period: 'Jan 2026 – Jun 2026',
+      period: 'Sep 2025 – Dec 2025',
       points: [
         'Managed Azure infrastructure across dev and production, including VMs, AKS clusters and App Services.',
         'Built and maintained CI/CD pipelines in Azure DevOps with YAML pipeline definitions.',
@@ -70,11 +68,11 @@ export const RESUME: Resume = {
       place: 'Singapore',
       period: 'Oct 2024 – Nov 2025',
       points: [
-        'Onboarded 15+ strategic blockchain and Web3 partners into technical collaborations and protocol integrations.',
-        'Reviewed and debugged partner Solidity implementations and proposed optimizations.',
-        'Implemented proof-of-concept ZK circuits and taught engineering teams ZK application design.',
-        'Ran weekly ZK workshops for the sales team over 2 months, raising measured domain knowledge by 40%.',
-        'Built TypeScript developer tooling, React demos and Next.js prototypes for partner integrations, and wrote developer guides and API docs.',
+        'Led technical integrations for 15+ partner protocols, connecting their systems to the Zerobase proving network.',
+        'Built GitHub Actions CI/CD pipelines to test, build and deploy integration SDKs, demos and documentation sites.',
+        'Automated partner and integration reporting with scheduled scripts, replacing manual weekly status reports.',
+        'Built TypeScript tooling and internal scripts to automate partner onboarding, environment setup and integration testing.',
+        'Implemented proof-of-concept zero-knowledge circuits and reviewed partner Solidity code during integration.',
       ],
     },
     {
@@ -83,10 +81,10 @@ export const RESUME: Resume = {
       place: 'Singapore',
       period: 'Dec 2022 – Sep 2024',
       points: [
-        'Conducted 60+ security analyses of live mainnet smart contracts, covering reentrancy, access control, oracle manipulation and economic exploits.',
-        'Authored security research reports presented at industry conferences, and yearly security reports for BNB Chain two years running.',
-        'Built Python and JavaScript scripts for automated vulnerability scanning and transaction analysis.',
-        'Cut report turnaround from 2 weeks to 4 days by streamlining research workflows.',
+        'Built Python and JavaScript tooling for automated vulnerability scanning and on-chain transaction analysis.',
+        'Conducted 60+ security analyses of production smart contracts, covering access control, reentrancy, oracle manipulation and economic exploits.',
+        'Cut report turnaround from 2 weeks to 4 days by automating research and reporting workflows.',
+        'Authored security research reports, including yearly security reports for BNB Chain two years running.',
       ],
     },
   ],
@@ -151,9 +149,8 @@ export const RESUME: Resume = {
     { label: 'CI/CD & IaC', items: ['Azure DevOps', 'GitHub Actions', 'GitLab CI', 'Jenkins', 'Terraform', 'Ansible'] },
     { label: 'Containers', items: ['Docker', 'Docker Compose', 'Kubernetes'] },
     { label: 'Observability', items: ['Prometheus', 'Grafana', 'Loki', 'Azure Monitor'] },
-    { label: 'Blockchain & ZK', items: ['EVM internals', 'Hardhat', 'Foundry', 'OpenZeppelin', 'Circom', 'SnarkJS', 'Smart contract security'] },
+    { label: 'Blockchain & cryptography', items: ['Zero-knowledge proofs', 'Circom', 'SnarkJS', 'EVM internals', 'Foundry', 'Smart contract security'] },
     { label: 'Web & backend', items: ['React', 'Next.js', 'Node.js', 'REST APIs', 'PostgreSQL'] },
-    { label: 'Product', items: ['Roadmap & prioritisation', 'Stakeholder management', 'Agile/Scrum', 'Technical documentation'] },
   ],
   languages: [
     { name: 'Uzbek', level: 'Native' },
@@ -178,11 +175,11 @@ Summary: ${RESUME.summary}
 Experience
 ${formatTimeline(RESUME.experience)}
 
-Community
-${formatTimeline(RESUME.community)}
-
 Education
 ${formatTimeline(RESUME.education)}
+
+Community
+${formatTimeline(RESUME.community)}
 
 Skills
 ${RESUME.skills.map((s) => `- ${s.label}: ${s.items.join(', ')}`).join('\n')}
